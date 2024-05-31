@@ -1,0 +1,6 @@
+PATCH http://127.0.0.1:8000/profile/change/password
+Content-Type: application/x-www-form-urlencoded
+password=contrasena&newpassword=nuevacontrasena
+
+
+

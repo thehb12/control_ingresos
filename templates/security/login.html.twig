@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block body %}
+
+
+	<style>
+		/* Estilo para el contenedor del formulario */
+		form {
+			max-width: 400px;
+			margin: 100px auto 0; /* Ajuste de margen para centrarlo verticalmente y agregar espacio en la parte superior */
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		.h3 {
+			text-align: center; /* Centrar el texto horizontalmente */
+			margin-bottom: 20px; /* Espacio en la parte inferior del encabezado */
+		}
+
+		/* Estilo para los campos de entrada y etiquetas */
+		label {
+			display: flex; /* Usar flexbox para colocar los elementos en línea */
+			align-items: center; /* Alinear verticalmente los elementos */
+			margin-bottom: 12px; /* Ajuste del margen inferior */
+			font-weight: bold;
+			margin-right: 70%
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: calc(100% - 30px); /* Ajuste del ancho para que la etiqueta y el campo de entrada no se superpongan */
+			padding: 7px;
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box; /* Para incluir el padding y el borde en el ancho total */
+		}
+
+		input[type="checkbox"] {
+			margin-left: auto; /* Mover el checkbox al lado derecho */
+		}
+
+		/* Estilo para el botón de enviar */
+		button[type="submit"] {
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #007bff;
+			color: #fff;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+
+		/* Estilo para el enlace de cierre de sesión */
+		a[href="#"] {
+			color: #007bff;
+			text-decoration: none;
+		}
+
+		a[href="#"]:hover {
+			text-decoration: underline;
+		}
+	</style>
+
+	<form method="post">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+
+		<h1 class="h3 mb-3 font-weight-normal">Bienvenido Administrador</h1>
+		<label for="inputUsername">Usuario</label>
+		<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+		<label for="inputPassword">Contraseña</label>
+		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+		<div class="checkbox mb-3">
+			<label>
+				<input type="checkbox" name="recuerdame">
+				Recuerdame
+			</label>
+		</div>
+
+		<button class="btn btn-lg btn-primary" type="submit">
+			Iniciar sesión
+		</button>
+	</form>
+{% endblock %}

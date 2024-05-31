@@ -1,0 +1,10 @@
+twig:
+    file_name_pattern: '*.twig'
+
+    exception_controller: null # Utiliza el controlador predeterminado de Symfony
+    paths:
+        '%kernel.project_dir%/templates': ~ 
+
+when@test:
+    twig:
+        strict_variables: true
