@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Repository\UserRepository;
 
-#[Route('/profile', name: 'app_profile')]
+#[Route('/profile', name: 'app_profile_')]
 class ProfileController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -22,24 +22,24 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/change/password', name: 'change_password', methods: ['PATCH'])]
+    #[Route('/change/password', name: 'change_password', methods: ['POST'])]
     public function change_password(
         Request $request,
         UserRepository $userRepository,
-        UserPasswordHasherInterface $userPasswordHasher
+        UserPasswordHasherInterface $userPasswordHasher,
+        MessagesController $messagesController
     ): JsonResponse {
-        $password = $request->request->get('password');  
-        $newpassword = $request->request->get('newpassword');
-        $json = ['password'=> $password,"newpassword"=> $newpassword];
-        return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
+        $password = $request->request->get('newpassword');  
+        $newpassword = $request->request->get('renewpassword');
+      $json = [];
 
         if ($password == "" || $newpassword == "") {
-            $json = ['message' => 'Uno o mas espacios estan en blanco'];
+            $json = ['message' => $messagesController->space_in_blank()];
             return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
         }
 
         if ($password != $newpassword) {
-            $json = ['message' => 'Las contraeñas no coinciden'];
+            $json = ['message' => $messagesController->password_no_match()];
             return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
         }
 
@@ -52,7 +52,7 @@ class ProfileController extends AbstractController
                 )
             );
             $userRepository->Save($user);
-            $json = ['message' => 'La contraseña cambio exitosamente'];
+            $json = ['message' => $messagesController->password_change_completed()];
             return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
         }
             return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);

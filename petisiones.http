@@ -1,6 +1,17 @@
-PATCH http://127.0.0.1:8000/profile/change/password
-Content-Type: application/x-www-form-urlencoded
-password=contrasena&newpassword=nuevacontrasena
+POST http://127.0.0.1:8000/profile/change/password
+Content-Type: multipart/form-data;boundary=----WebKitFormBoundry 
+
+------WebKitFormBoundry
+Content-Disposition: form-data; name="password"
+
+password
+------WebKitFormBoundry
+Content-Disposition: form-data; name="newpassword"
+
+newpassword
+------WebKitFormBoundry
+
+
 
 
 

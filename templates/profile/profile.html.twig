@@ -191,8 +191,12 @@
 	</section>
 
 {% endblock %}
-{% block javascripts %}
+{% block javascripts %}	
+	<script>
+	const rute ="{{path('app_profile_change_password')}}" 
+	</script>
 	{{ encore_entry_script_tags('profile') }}
+	
 {% endblock %}
 
 
