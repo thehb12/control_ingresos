@@ -22,4 +22,12 @@ class MessagesController extends AbstractController
     public function password_change_completed(): String{
         return 'La contraseña cambio exitosamente';
     }
+
+    public function email_already_exists(): string{
+        return 'El correo electronico ya existe';
+    }
+
+    public function profile_update_completed(): string{
+        return 'Se ha actualizado la informacion';
+    }
 }
