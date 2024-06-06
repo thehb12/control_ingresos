@@ -34,10 +34,10 @@ class ProfileService extends AbstractController
     ) {
 
         if ($this->isPasswordsEmpy($request)) {
-            return new JsonResponse(['message' => $this->messagesController->password_change_completed()], 200, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['message' => $this->messagesController->space_in_blank(),"sweetalert"=>$this->messagesController->getSweetAlertError()], 200, ['Content-Type' => 'application/json']);
         }
         if ($this->isnotPasswordsEquals($request)) {
-            return new JsonResponse(['message' => $this->messagesController->password_no_match()], 200, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['message' => $this->messagesController->password_no_match(),"sweetalert"=>$this->messagesController->getSweetAlertError()], 200, ['Content-Type' => 'application/json']);
         }
 
         $this->savepassword($request, $userInterface);
@@ -49,17 +49,22 @@ class ProfileService extends AbstractController
         UserInterface $userInterface
     ) {
         if ($this->isspaceinblank($request)) {
-            return new JsonResponse(['message' => $this->messagesController->space_in_blank()], 200, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['message' => $this->messagesController->space_in_blank(), "sweetalert"=>$this->messagesController->getSweetAlertError()], 200, ['Content-Type' => 'application/json']);
         }
 
 
         if ($this->isemailexits($request, $userInterface)) {
 
-            return new JsonResponse(['message' => $this->messagesController->email_already_exists()], 200, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['message' => $this->messagesController->email_already_exists(),"sweetalert"=>$this->messagesController->getSweetAlertError()], 200, ['Content-Type' => 'application/json']);
         }
 
         $this->saveprofile($request, $userInterface);
-        return new JsonResponse(['message' => $this->messagesController->profile_update_completed()], 200, ['Content-Type' => 'application/json']);
+        $mensaje = [
+            'message' => $this->messagesController->profile_update_completed(),
+            "sweetalert"=>$this->messagesController->getSweetAlertSeccess()
+        ];
+                
+        return new JsonResponse($mensaje, 200, ['Content-Type' => 'application/json']);
     }
 
 
