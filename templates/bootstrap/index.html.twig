@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BootstrapController!{% endblock %}
+
+{% block content %}
+<table id="table"></table>
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+			{{ encore_entry_script_tags('bootstrap') }}
+		{% endblock %}

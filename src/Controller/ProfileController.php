@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Services\ProfileService;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,44 +18,28 @@ class ProfileController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
+        $user = $this->getUser();
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
+            'user' => $user
         ]);
     }
 
     #[Route('/change/password', name: 'change_password', methods: ['POST'])]
     public function change_password(
         Request $request,
-        UserRepository $userRepository,
-        UserPasswordHasherInterface $userPasswordHasher,
-        MessagesController $messagesController
+        ProfileService $profileService
     ): JsonResponse {
-        $password = $request->request->get('newpassword');  
-        $newpassword = $request->request->get('renewpassword');
-      $json = [];
 
-        if ($password == "" || $newpassword == "") {
-            $json = ['message' => $messagesController->space_in_blank()];
-            return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
-        }
+        return $profileService->actualizarPassword($request, $this->getUser());
+    }
 
-        if ($password != $newpassword) {
-            $json = ['message' => $messagesController->password_no_match()];
-            return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
-        }
+    #[Route('/change/profile', name: 'change_profile', methods: ['POST'])]
+    public function profile(
+        Request $request,
+        ProfileService $profileService
 
-        if ($password === $newpassword) {
-            $user = $userRepository->find($this->getUser());
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $newpassword
-                )
-            );
-            $userRepository->Save($user);
-            $json = ['message' => $messagesController->password_change_completed()];
-            return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
-        }
-            return new JsonResponse($json, 200, ['Content-Type' => 'application/json']);
+    ): JsonResponse {
+        return $profileService->UpdateProfile($request, $this->getUser());
     }
 }
