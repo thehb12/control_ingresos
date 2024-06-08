@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 function sweetalert2(server) {
     setTimeout(() => Swal.fire(server), 1000);
 }
@@ -29,7 +30,6 @@ renew_Password.addEventListener('input', (e) => {
             renew_Password.setCustomValidity('');
         }
     }, 600);
-
 });
 
 // Envío del formulario

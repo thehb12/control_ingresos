@@ -4,11 +4,15 @@
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^4.0.0",
         "core-js": "^3.23.0",
+        "file-loader": "^6.0.0",
         "regenerator-runtime": "^0.13.9",
+        "sass": "^1.77.4",
+        "sass-loader": "^14.0.0",
+        "ts-loader": "^9.0.0",
+        "typescript": "^5.4.5",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
         "webpack-notifier": "^1.15.0"
-
     },
     "license": "UNLICENSED",
     "private": true,
@@ -19,23 +23,12 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "animate.css": "^4.1.1",
-        "apexcharts": "^3.49.1",
-        "bootstrap": "^5.3.3",
-        "bootstrap-icons": "^1.11.3",
-        "bootstrap-table": "^1.22.6",
-        "boxicons": "^2.1.4",
-        "chart.js": "^4.4.3",
-        "echarts": "^5.5.0",
-        "fontawesome-free": "^1.0.4",
-        "jquery-confirm": "^3.3.4",
-        "jquery-ui": "^1.13.3",
-        "quill": "^2.0.2",
-        "remixicon": "^4.2.0",
-        "simple-datatables": "^9.0.3",
-        "sweetalert2": "^11.11.0",
-        "tinymce": "^7.1.1",
-        "toastr": "^2.1.4"
-        
+        "@fortawesome/fontawesome-free": "6.5.2",
+        "bootstrap": "5.3.3",
+        "bootstrap-icons": "1.11.3",
+        "bootstrap-table": "1.22.6",
+        "jquery": "3.7.1",
+        "sweetalert2": "11.11.1",
+        "tableexport.jquery.plugin": "1.9.9"
     }
 }
