@@ -9,6 +9,8 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('profile', './assets/profile.js')
     .addEntry('bootstrap', './assets/bootstrap.js')
+    .addEntry('trabajadores', './assets/trabajadores.js')
+    .addEntry('trasacciones', './assets/trasacciones.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

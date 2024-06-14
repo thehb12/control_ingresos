@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BootstrapController!{% endblock %}
+{% block title %}Hello BootstrapController!
+{% endblock %}
 
 {% block content %}
-<table id="table"></table>
+    {# <button id='boton'>Oprimeme</button> #}
+	 <table id="table" data-toggle="table" data-height="460" data-pagination="true" data-pagination-h-align="left" data-pagination-detail-h-align="right"></table> 
 {% endblock %}
 {% block javascripts %}
-{{parent()}}
-			{{ encore_entry_script_tags('bootstrap') }}
-		{% endblock %}
+	{{parent()}}
+	{{ encore_entry_script_tags('bootstrap') }}
+{% endblock %}

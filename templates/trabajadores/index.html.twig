@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TrabajadoresController!
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+	<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">AGREGAR TRABAJADORES</h5>
+		<form id="form_trabajador" class="row g-3 needs-validation">
+			<div class="col-md-3">
+				<small>
+					<b>
+						<label for="nombres" class="form-label">Nombres:</label>
+						<span class="required" style="color: red" title="Campo Obligatorio">*</span>
+					</b>
+				</small>
+				<div class="input-group">
+					<input type="text" class="form-control" id="nombre" name="nombre" required>
+					<div class="invalid-feedback">Por favor ingresa los nombres.</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<small>
+					<b>
+						<label for="email" class="form-label">Cedula:</label>
+						<span class="required" style="color: red" title="Campo Obligatorio">*</span>
+					</b>
+				</small>
+				<div class="input-group">
+					<input type="Cedula" class="form-control" id="cedula" name="cedula" required>
+					<div class="invalid-feedback">Por favor ingresa Cedula.</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<small>
+					<b>
+						<label for="Cargo" class="form-label">Cargo:</label>
+						<span class="required" style="color: red" title="Campo Obligatorio">*</span>
+					</b>
+				</small>
+				<div class="input-group">
+					<input type="string" class="form-control" id="cargo" name="cargo" required>
+					<div class="invalid-feedback">Por favor ingresa el Cargo.</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<small>
+					<b>
+						<label for="Celular" class="form-label">Celular:</label>
+						<span class="required" style="color: red" title="Campo Obligatorio">*</span>
+					</b>
+				</small>
+				<div class="input-group">
+					<input type="number" class="form-control" id="celular" name="celular" required>
+					<div class="invalid-feedback">Por favor ingresa el Cargo.</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+	<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">LISTADO TRABAJADORES</h5>
+	<table id="table_trabajadores" style="width: auto"></table>
+
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('trabajadores') }}
+	 <script>
+								const rutas = {
+									"app_trabajadores_pagination":"{{path('app_trabajadores_pagination')}}",
+									"app_trabajadores_agregar":"{{path('app_trabajadores_agregar')}}",
+									"app_trabajadores_borrar":"{{path('app_trabajadores_borrar')}}",
+									}
+								
+								</script>
+{% endblock %}
