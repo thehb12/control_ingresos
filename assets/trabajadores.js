@@ -26,7 +26,8 @@ $('#table_trabajadores').bootstrapTable({
   showRefresh: true,
   pagination: true,
   pageSize: 10,
-  url: rutas.app_trabajadores_pagination,
+  locale:"es-ES",
+  url: '/trabajadores/pagination',
   buttons: buttons,
 });
 
@@ -37,6 +38,7 @@ function buttons() {
       icon: 'bi-pencil-square',
       event: () => {
         let data = $('#table_trabajadores').bootstrapTable('getSelections')
+        select('#id').value=data[0].id;
         select('#nombre').value=data[0].nombre;
         select('#cargo').value=data[0].cargo;
         select('#celular').value=data[0].celular;
@@ -53,8 +55,8 @@ function buttons() {
       event: async () => {
         let dataRow = $('#table_trabajadores').bootstrapTable('getSelections');
         const data = new FormData();
-        data.append('cedula', dataRow[0].cedula);
-        const resp = await async_fecth_form_data(rutas.app_trabajadores_borrar, data);
+        data.append('id', dataRow[0].id);
+        const resp = await async_fecth_form_data('/trabajadores/borrar', data);
         sweetalert2Server(resp.result.mensaje);
         $('#table_trabajadores').bootstrapTable('refresh');
       },
@@ -68,8 +70,15 @@ function buttons() {
 on('submit', '#form_trabajador', async (e) => {
   e.preventDefault();
   const data = new FormData(e.target);
-  const resp = await async_fecth_form_data(rutas.app_trabajadores_agregar, data)
+  const resp = await async_fecth_form_data('/trabajadores/agregar', data)
   sweetalert2Server(resp.result.mensaje);
   $('#table_trabajadores').bootstrapTable('refresh');
   e.target.reset();
 })
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn_reset_form').addEventListener('click', function() {
+    document.getElementById('form_trabajador').reset(); // Resetea el formulario
+    // Aquí puedes agregar cualquier acción adicional que necesites
+  });
+});

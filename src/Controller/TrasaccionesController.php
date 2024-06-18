@@ -18,11 +18,12 @@ class TrasaccionesController extends AbstractController
     }
     #[Route('pagination', name: 'pagination')]
     public function pagination(
+        Request $request,
         TrasaccionesService $trasaccionesService
         ): JsonResponse 
     {
-        $json['rows'] = $trasaccionesService->page();
-         $json['total'] = 800;
+        $json['rows'] = $trasaccionesService->page($request);
+         $json['total'] = $trasaccionesService->pagetotal();
          $json['totalNotFiltered'] = 800;
     
         return new JsonResponse($json, 200, ['Content-Type' => 'application/json']); 
@@ -37,7 +38,6 @@ class TrasaccionesController extends AbstractController
     
         
     }
-
 
     #[Route('borrar', name: 'borrar')]
     public function borrar(

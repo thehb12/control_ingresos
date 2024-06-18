@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Trabajadores;
-use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Trasacciones;
 use App\Repository\TrasaccionesRepository;

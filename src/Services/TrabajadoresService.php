@@ -63,8 +63,8 @@ class TrabajadoresService extends AbstractController
     public function borrartrabajador(Request $request): JsonResponse
     {
 
-        $numCedula = $request->request->get('cedula');
-        $trabajador = $this->trabajadoresRepository->findOneBy(['cedula' => $numCedula]);
+        $id = $request->request->get('id');
+        $trabajador = $this->trabajadoresRepository->findOneBy(['id' => $id]);
 
        
         if ($trabajador instanceof Trabajadores) {
@@ -72,7 +72,6 @@ class TrabajadoresService extends AbstractController
             return new JsonResponse(['mensaje' => $this->messagesController->getSweetAlertTrabajadorEliminado()], 200, ['Content-Type' => 'application/json']);
             
         } 
-           dd($numCedula);
         return  new JsonResponse(['mensaje' => $this->messagesController->getSweetAlertError()], 200, ['Content-Type' => 'application/json']);
     }
 }

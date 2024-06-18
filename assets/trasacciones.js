@@ -28,33 +28,36 @@ $('#table_trasacciones').bootstrapTable({
     search: true,
     showRefresh: true,
     pagination: true,
-    pageSize: 10,
-    url: '/trasacciones/pagination',
-   buttons: buttons,
+    showExport: true,
+    sidePagination:"server", 
+    exportTypes: ['excel'],
+    pageList:"[5,10, 25, 50, 100, all]",
+    url: '/trasacciones/pagination/',
+    buttons: buttons
+    
   });
+
   function buttons() {
-    return {btnUsersDelete: {
-      text: 'Highlight Users',
-      icon: 'bi-trash',
-      event: async () => {
-        let dataRow = $('#table_trasacciones').bootstrapTable('getSelections');
-        const data = new FormData();
-        data.append('cedula', dataRow[0].cedula);
-        const resp = await async_fecth_form_data(rutas.app_trasacciones_borrar, data);
-        sweetalert2Server(resp.result.mensaje);
-        $('#table_trasacciones').bootstrapTable('refresh');
-      },
-      attributes: {
-        title: 'Eliminar'
-      }
+    return {
+      btnUsersAdd: {
+        text: 'Highlight Users',
+        icon: 'bi-pencil-square',
+        event: () => {
+          let data = $('#table_trasacciones').bootstrapTable('getSelections')
+          select('#cedula').value=data[0].cedula;    
+  
+        },
+        attributes: {
+          title: 'Editar Trabajador'
+        }
+      }  
     }
   }
-}
 
   on('submit', '#form_trasaccion', async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const resp = await async_fecth_form_data(rutas.app_trasacciones_agregar, data)
+    const resp = await async_fecth_form_data('/trasacciones/agregar', data)
     sweetalert2Server(resp.result.mensaje);
     $('#table_trasacciones').bootstrapTable('refresh');
     e.target.reset();

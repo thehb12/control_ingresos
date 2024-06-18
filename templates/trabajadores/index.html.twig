@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TrabajadoresController!
+{% block title %}Modulo trabajadores!
 {% endblock %}
 
 {% block content %}
 	<div class="container-fluid">
-	<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">AGREGAR TRABAJADORES</h5>
+		<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">AGREGAR TRABAJADORES</h5>
 		<form id="form_trabajador" class="row g-3 needs-validation">
+			<input type="hidden" value="0" name="id" id="id">
 			<div class="col-md-3">
 				<small>
 					<b>
@@ -56,7 +57,14 @@
 				</div>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<div class="col-md-12 mt-3 mb-4 d-flex justify-content-center">
+			<button type="submit" id="btn_guardar_form" class="btn btn-outline-primary btn-sm mx-3">
+				Guardar
+			</button>
+			<button type="reset" id="btn_reset_form" class="btn btn-outline-secondary btn-sm mx-3">
+				Limpiar
+			</button>
+		</div>
 	</form>
 
 	<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">LISTADO TRABAJADORES</h5>
@@ -66,12 +74,4 @@
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('trabajadores') }}
-	 <script>
-								const rutas = {
-									"app_trabajadores_pagination":"{{path('app_trabajadores_pagination')}}",
-									"app_trabajadores_agregar":"{{path('app_trabajadores_agregar')}}",
-									"app_trabajadores_borrar":"{{path('app_trabajadores_borrar')}}",
-									}
-								
-								</script>
 {% endblock %}

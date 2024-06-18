@@ -41,17 +41,50 @@ class TrasaccionesRepository extends ServiceEntityRepository
                 't.id',
                 'tr.cedula',
                 'tr.nombre',
-                "DATE_FORMAT(t.fecha_entrada,'%Y-%m-%d') fecha_entrada",
-                "DATE_FORMAT(t.fecha_salida,'%Y-%m-%d') fecha_salida",
-                't.estado'
+                "DATE_FORMAT(t.fecha_entrada,'%Y-%m-%d %H:%i:%s') fecha_entrada",
+                "DATE_FORMAT(t.fecha_salida,'%Y-%m-%d %H:%i:%s') fecha_salida",
+                "CASE WHEN t.estado = 1 THEN 'Salio' ELSE 'Ingreso' END as estado ",
             )
             ->leftJoin('t.trabajadores', 'tr')
-            ->orderBy('t.id', 'ASC');
+            ->orderBy('t.id', 'DESC');
 
         $results = $queryBuilder
             ->getQuery()
             ->getArrayResult();
 
         return $results;
+    }
+    public function pagepagination(int $offset, int $limit, string $search): array
+    {
+        $queryBuilder = $this->createQueryBuilder('t')
+            ->select(
+                't.id',
+                'tr.cedula',
+                'tr.nombre',
+                "DATE_FORMAT(t.fecha_entrada,'%Y-%m-%d %H:%i:%s') fecha_entrada",
+                "DATE_FORMAT(t.fecha_salida,'%Y-%m-%d %H:%i:%s') fecha_salida",
+                "CASE WHEN t.estado = 1 THEN 'Salio' ELSE 'Ingreso' END as estado ",
+            )
+            ->leftJoin('t.trabajadores', 'tr')
+            ->orderBy('t.id', 'DESC');
+    
+        ($search != 'null') && $queryBuilder->andWhere('tr.cedula LIKE :cedula')
+            ->setParameter('cedula', '%' . $search . '%');
+
+        $queryBuilder->setFirstResult($offset)
+            ->setMaxResults($limit);
+        return  $queryBuilder
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function pagetotal(): int
+    {
+
+        $queryBuilder = $this->createQueryBuilder('t')
+            ->select('COUNT(t.id)');
+        return  $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }

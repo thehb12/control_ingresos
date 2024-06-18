@@ -28,12 +28,26 @@ class TrasaccionesService extends AbstractController
         $this->trabajadoresRepository = $trabajadoresRepository;
         $this->messagesController = $messagesController;
     }
-    public function page(): array
+    public function page(Request $request): array
     {
-        return $this->trasaccionesRepository->pageall();
+        $offset = $request->query->get("offset",0);
+        $limit = $request->query->get("limit",10);
+        $search = $request->query->get("search", 'null');
+
+        return $this->trasaccionesRepository->pagepagination($offset ,$limit,$search);
     }
+
+    public function pagetotal(): int
+    {
+        
+        return $this->trasaccionesRepository->pagetotal();
+    }
+    
+
+
     public function creartrasaccion(Request $request): JsonResponse
     {
+        \date_default_timezone_set('America/Bogota'); 
         $numCedula = $request->request->get('cedula');
         if (!$numCedula) {
             return new JsonResponse(['mensaje' => $this->messagesController->getSweetAlertCampoVacio()], 200, ['Content-Type' => 'application/json']);
@@ -52,11 +66,11 @@ class TrasaccionesService extends AbstractController
             $trasaccion->setTrabajadores($trabajador);
             //$trasaccion->setFechaEntrada(/new DataTime());
             $trasaccion->setEstado(0);
-            $json = ['mensaje' => $this->messagesController->getSweetAlertError('no existe transacion')];
+            $json = ['mensaje' => $this->messagesController->getSweetAlertSeccess('El trabajador ingreso exitosamente')];
         }else{
                //$trasaccion->setFechaSalida(/new DataTime());
                $trasaccion->setEstado(1);
-            $json = ['mensaje' => $this->messagesController->getSweetAlertError('existe transacion')];
+            $json = ['mensaje' => $this->messagesController->getSweetAlertSeccess('El trabajador salio exitosamente')];
         }
 
         $this->trasaccionesRepository->guardar($trasaccion);
