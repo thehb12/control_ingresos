@@ -3,11 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Trabajadores;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use PhpParser\Builder\Function_;
-use PhpParser\Node\Expr\FuncCall;
+
 
 class TrabajadoresRepository extends ServiceEntityRepository
 {

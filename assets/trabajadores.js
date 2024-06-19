@@ -26,7 +26,7 @@ $('#table_trabajadores').bootstrapTable({
   showRefresh: true,
   pagination: true,
   pageSize: 10,
-  locale:"es-ES",
+  locale: "es-ES",
   url: '/trabajadores/pagination',
   buttons: buttons,
 });
@@ -38,11 +38,11 @@ function buttons() {
       icon: 'bi-pencil-square',
       event: () => {
         let data = $('#table_trabajadores').bootstrapTable('getSelections')
-        select('#id').value=data[0].id;
-        select('#nombre').value=data[0].nombre;
-        select('#cargo').value=data[0].cargo;
-        select('#celular').value=data[0].celular;
-        select('#cedula').value=data[0].cedula;    
+        select('#id').value = data[0].id;
+        select('#nombre').value = data[0].nombre;
+        select('#cargo').value = data[0].cargo;
+        select('#celular').value = data[0].celular;
+        select('#cedula').value = data[0].cedula;
 
       },
       attributes: {
@@ -76,9 +76,8 @@ on('submit', '#form_trabajador', async (e) => {
   e.target.reset();
 })
 
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('btn_reset_form').addEventListener('click', function() {
-    document.getElementById('form_trabajador').reset(); // Resetea el formulario
-    // Aquí puedes agregar cualquier acción adicional que necesites
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('btn_reset_form').addEventListener('click', function () {
+    document.getElementById('form_trabajador').reset();
   });
 });

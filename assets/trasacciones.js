@@ -1,4 +1,4 @@
-import { async_fecth_form_data, sweetalert2, select, on, sweetalert2Server } from './util';
+import { async_fecth_form_data, select, on, sweetalert2Server } from './util';
 
 $('#table_trasacciones').bootstrapTable({
     columns: [{
