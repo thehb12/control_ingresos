@@ -20,8 +20,8 @@ let renew_Password = document.querySelector('#renewPassword');
 let timeout = null;
 
 renew_Password.addEventListener('input', (e) => {
-    clearTimeout(timeout);// Limpiar el timeout anterior si el usuario sigue escribiendo
-    timeout = setTimeout(() => {  // Establecer un nuevo timeout
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {  
         if (e.target.value !== '' && e.target.value !== new_Password.value) {
             let mensajesError = 'Las contraseñas no coinciden';
             sweetalertnoserver(mensajesError);
@@ -64,9 +64,9 @@ form_change_password.addEventListener('submit', async (e) => {
         }
     } else {
         let mensajesError = 'Las contraseñas no coinciden';
-        sweetalertnoserver(mensajesError);  // Mostrar la alerta
+        sweetalertnoserver(mensajesError);  
         renew_Password.setCustomValidity(mensajesError);
-        form_change_password.reportValidity();  // Mostrar la validez del formulario
+        form_change_password.reportValidity();  
     }
 })
 

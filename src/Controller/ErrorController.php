@@ -18,8 +18,9 @@ class ErrorController extends AbstractController
                  'message' => $exception,
              ]);
          }
+         
         return $this->render('error/index.html.twig', [
-            'message' => ['statuscode'=> 500, 'menssage'=> 'NO Error!'],
+            'message' => ['statuscode'=> 500, 'message'=> 'NO Error!'],
         ]);
     }
 }

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registros de llegada y salida!
+{% endblock %}
+
+{% block content %}
+
+	<div class="container-fluid">
+
+		<div class="row"></div>
+		<h5 class="text-muted" style="text-align: center; margin-bottom: 20px; font-size: 1.25rem;">AGREGAR REGISTRO</h5>
+		<form id="form_trasaccion">
+			<div class="form-group">
+				<label for="cedula">Cedula</label>
+				<input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" required>
+			</div>
+			<div class="col-md-12 mt-3 mb-4 d-flex justify-content-center">
+			<button type="submit" id="btn_guardar_form" class="btn btn-outline-primary btn-sm mx-3">
+				Registrar
+			</button>
+		</div>
+		</form>
+		<div>
+			<table id="table_trasacciones" style="width: auto"></table>
+		</div>
+	{% endblock %}
+	{% block javascripts %}
+		{{ parent() }}
+		{{ encore_entry_script_tags('trasacciones') }}
+	
+	{% endblock %}

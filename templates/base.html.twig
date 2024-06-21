@@ -1,99 +1,3 @@
-{# <!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-
-		<link href="https://fonts.gstatic.com" rel="preconnect">
-		<link
-		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-		<link href="{{ asset('build/boxicons/boxicons.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/quill/quill.snow.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/quill/quill.bubble.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/remixicon/remixicon.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/simple-datatables/style.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/toastr/toastr.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('build/fontawesome-free/css/all.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="{{ asset('build/jquery-confirm/jquery-confirm.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('build/animate.css/animate.css') }}">
-		 <script src="{{ asset('build/jquery/jquery.js') }}"></script>
-		 <script type="text/javascript" src="{{ asset('build/jquery-ui/jquery-ui.js') }}"></script>
-
-
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-
-		{% endblock %}
-
-	</head>
-	<body>
-		{# {% block no_body %} #}
-
-		{# {% block body %}
-
-			{{ include('navbar.html.twig') }}
-			{{ include('sidebar.html.twig') }}
-			<main id="main" class="main">
-				<div class="row">
-					<div class="col-3 mb-3 offset-md-9"></div>
-				</div>
-
-				{% block content %}{% endblock %}
-			</main>
-			<!-- End #main -->
-
-			{% block footer %}
-
-				<footer id="footer" class="footer">
-					{% if develop.status is defined %}
-						{% if develop.status %}
-							<dvi class="copyright text-danger">{{ develop.mensaje }}</dvi>
-						{% endif %}
-					{% endif %}
-					<div class="copyright">
-						&copy; Unidad Clinica San Nicolas LTDA. Todos los derechos reservados.
-					</div>
-					<div class="credits">Software desarrollado por
-						<a href=>Julian Hernandez</a>
-					</div>
-				</footer>
-				<!-- End Footer -->
-
-			{% endblock %}
-			<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-				<i class="bi bi-arrow-up-short"></i>
-			</a>
-
-
-		{% endblock %}
-
-
-		 <script type="text/javascript" src="{{ asset('build/jquery-confirm/jquery-confirm.min.js') }}"></script>
-
-		 <script src="{{ asset('build/apexcharts/apexcharts.min.js') }}"></script>
-		 <script src="{{ asset('build/chart.js/chart.umd.js') }}"></script>
-		 <script src="{{ asset('build/echarts/echarts.min.js') }}"></script>
-		 <script src="{{ asset('build/quill/quill.js') }}"></script>
-		
-		 <script src="{{ asset('build/tinymce/tinymce.min.js') }}"></script>
-		 <script src="{{ asset('build/fontawesome-free/js/all.js') }}"></script>
-		 <script src="{{ asset('build/toastr/toastr.min.js') }}"></script>
-		 <script src="{{ asset('build/sweetalert2/sweetalert2.min.js') }}"></script>
-		 <script src="{{asset('build/main.js')}}"></script>
-	{% block javascripts %}
-{{ encore_entry_script_tags('app') }}
-{% endblock %}
-</body>
-</html>  #}
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -108,136 +12,84 @@
 		{% endblock %}
 	</head>
 	<body>
-	{% block no_body %}
-	{% block body %}
-	
-	  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{path('app_home')}}" class="logo d-flex align-items-center">
-    
-        <span class="d-none d-lg-block" style="font-size: 17px;">Unidad Clinica San Nicolas LTDA</span>
-
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Buscar" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.name }}</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>{{ app.user.name }}</h6>
-              <span>{{ app.user.job }}</span>  
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{path('app_profile_index')}}">
-                <i class="bi bi-gear"></i>
-                <span>Configuracion de la cuenta</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{path('app_logout')}}">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Salir</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navcons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="{{path('app_home')}}">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Registros</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{path('app_tabla')}}">
-              <i class="bi bi-circle"></i><span>Control Acceso</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Components Nav -->
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
-	{% block content %}{% endblock %}
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-			<script src="{{ asset('build/jquery/jquery.min.js') }}"></script>
-		{% endblock %}
-		{% endblock %}
-		{% endblock %}
-	</body>
-	
-</html>
+		{% block no_body %}
+			{% block body %}
+				{{ include('navbar.html.twig') }}
+				{{ include('sidebar.html.twig') }}
+				<main id="main" class="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="card-title">Funcionalidad 1: Registro de Llegada y Salida de Trabajadores</h5>
+										<p class="card-text">
+											El aplicativo web permite a un administrador registrar la llegada y salida de trabajadores utilizando su número de cédula.
+										</p>
+										<ul class="card-text">
+											<li>Al ingresar la cédula del trabajador o escanear su código de barras, el sistema utiliza la huella biométrica para verificar la identidad y registra automáticamente la fecha y hora exacta de llegada en una tabla específica de la base de datos.</li>
+											<li>El estado del trabajador se establece como "Ingreso" al registrar la llegada.</li>
+											<li>Para registrar la salida, el administrador utiliza nuevamente la huella biométrica o el código de barras, y el sistema registra la fecha y hora exacta de salida, actualizando el estado del trabajador a "Salida".</li>
+											<li>El aplicativo web proporciona la funcionalidad de exportar registros en formato Excel, permitiendo al administrador generar informes detallados de las entradas y salidas de los trabajadores.</li>
+											<li>Se implementan medidas de seguridad robustas para proteger la integridad de los datos biométricos y de identificación personal, garantizando que solo los administradores autorizados puedan acceder y gestionar los registros.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="card-title">Funcionalidad 2: Ventajas del Aplicativo Web</h5>
+										<ul class="card-text">
+											<li>
+												<strong>Automatización Eficiente:</strong>
+												El aplicativo web automatiza el registro de llegada y salida de trabajadores utilizando tecnología biométrica y código de barras, mejorando la precisión y eficiencia del proceso.</li>
+											<li>
+												<strong>Acceso Rápido a la Información:</strong>
+												Proporciona una interfaz intuitiva que permite a los administradores buscar y consultar rápidamente los registros de actividad de los trabajadores en la clínica.</li>
+											<li>
+												<strong>Generación de Informes Detallados:</strong>
+												Permite generar informes detallados en formato Excel, facilitando la gestión y análisis de datos para la toma de decisiones informadas.</li>
+											<li>
+												<strong>Seguridad Avanzada:</strong>
+												Implementa medidas robustas de seguridad para proteger la información biométrica y personal de los trabajadores, garantizando la confidencialidad y cumplimiento normativo.</li>
+											<li>
+												<strong>Facilidad de Integración:</strong>
+												Diseñado con flexibilidad para integrarse con otros sistemas de gestión existentes en la clínica, mejorando la interoperabilidad y optimizando los procesos internos.</li>
+											<li>
+												<strong>Mejora en la Productividad:</strong>
+												Reduce el tiempo dedicado a la administración manual de registros y permite a los administradores enfocarse en tareas estratégicas y de valor agregado.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				{% block content %}{% endblock %}
+			</body>
+		</html>
+	</main>
+	{% block footer %}
+		<footer id="footer" class="footer">
+			{% if develop.status is defined %}
+				{% if develop.status %}
+					<dvi class="copyright text-danger">{{ develop.mensaje }}</dvi>
+				{% endif %}
+			{% endif %}
+			<div class="copyright">
+				&copy; Unidad Clinica San Nicolas LTDA. Todos los derechos reservados.
+			</div>
+			<div class="credits">Software desarrollado por
+				<a href="https://www.tthhunidadclinicasannicolas.com/">www.tthhunidadclinicasannicolas.com</a>
+			</div>
+		</footer>
+	{% endblock %}
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+		<i class="bi bi-arrow-up-short"></i>
+	</a>
+	{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
+		 <script src="{{ asset('build/jquery/jquery.min.js') }}"></script>
+	{% endblock %}
+{% endblock %}{% endblock %}</body></html>
