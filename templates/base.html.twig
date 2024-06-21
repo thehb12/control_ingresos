@@ -14,45 +14,63 @@
 	<body>
 		{% block no_body %}
 			{% block body %}
-
 				{{ include('navbar.html.twig') }}
 				{{ include('sidebar.html.twig') }}
-
-
 				<main id="main" class="main">
-					<div class="row">
-						<div class="col-3 mb-3 offset-md-9"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="card-title">Funcionalidad 1: Registro de Llegada y Salida de Trabajadores</h5>
+										<p class="card-text">
+											El aplicativo web permite a un administrador registrar la llegada y salida de trabajadores utilizando su número de cédula.
+										</p>
+										<ul class="card-text">
+											<li>Al ingresar la cédula del trabajador o escanear su código de barras, el sistema utiliza la huella biométrica para verificar la identidad y registra automáticamente la fecha y hora exacta de llegada en una tabla específica de la base de datos.</li>
+											<li>El estado del trabajador se establece como "Ingreso" al registrar la llegada.</li>
+											<li>Para registrar la salida, el administrador utiliza nuevamente la huella biométrica o el código de barras, y el sistema registra la fecha y hora exacta de salida, actualizando el estado del trabajador a "Salida".</li>
+											<li>El aplicativo web proporciona la funcionalidad de exportar registros en formato Excel, permitiendo al administrador generar informes detallados de las entradas y salidas de los trabajadores.</li>
+											<li>Se implementan medidas de seguridad robustas para proteger la integridad de los datos biométricos y de identificación personal, garantizando que solo los administradores autorizados puedan acceder y gestionar los registros.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h5 class="card-title">Funcionalidad 2</h5>
+										<p class="card-text">Descripción detallada de la funcionalidad 2.</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-
-					{% block content %}{% endblock %}
 				</main>
-
-				{% block footer %}
-					<footer id="footer" class="footer">
-						{% if develop.status is defined %}
-							{% if develop.status %}
-								<dvi class="copyright text-danger">{{ develop.mensaje }}</dvi>
-							{% endif %}
-						{% endif %}
-						<div class="copyright">
-							&copy; Unidad Clinica San Nicolas LTDA. Todos los derechos reservados.
-						</div>
-						<div class="credits">Software desarrollado por
-							<a href="{{ path('app_home') }}">www.tthhunidadclinicasannicolas.com</a>
-						</div>
-					</footer>
-					<!-- End Footer -->
-
-				{% endblock %}
-				<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-					<i class="bi bi-arrow-up-short"></i>
-				</a>
-				{% block javascripts %}
-					{{ encore_entry_script_tags('app') }}
-					 <script src="{{ asset('build/jquery/jquery.min.js') }}"></script>
-				{% endblock %}
-			{% endblock %}
-		{% endblock %}
-	</body>
-
-</html>
+				{% block content %}{% endblock %}
+			</body>
+		</html>
+	</main>
+	{% block footer %}
+		<footer id="footer" class="footer">
+			{% if develop.status is defined %}
+				{% if develop.status %}
+					<dvi class="copyright text-danger">{{ develop.mensaje }}</dvi>
+				{% endif %}
+			{% endif %}
+			<div class="copyright">
+				&copy; Unidad Clinica San Nicolas LTDA. Todos los derechos reservados.
+			</div>
+			<div class="credits">Software desarrollado por
+				<a href="https://www.tthhunidadclinicasannicolas.com/">www.tthhunidadclinicasannicolas.com</a>
+			</div>
+		</footer>
+	{% endblock %}
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+		<i class="bi bi-arrow-up-short"></i>
+	</a>
+	{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
+		 <script src="{{ asset('build/jquery/jquery.min.js') }}"></script>
+	{% endblock %}
+{% endblock %}{% endblock %}</body></html>
