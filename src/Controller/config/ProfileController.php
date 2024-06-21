@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\config;
 
-use App\Services\ProfileService;
+use App\Services\config\ProfileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +16,11 @@ class ProfileController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
+        if ($this->getUser() === null) {
+            return $this->redirectToRoute('app_login');
+        }
         $user = $this->getUser();
-        return $this->render('profile/profile.html.twig', [
-            'controller_name' => 'ProfileController',
+        return $this->render('config/profile.html.twig', [
             'user' => $user
         ]);
     }

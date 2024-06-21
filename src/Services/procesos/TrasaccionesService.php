@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\procesos;
 
 use App\Controller\MessagesController;
 use App\Entity\Trasacciones;

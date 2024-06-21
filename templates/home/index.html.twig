@@ -1,7 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenido Administrador!{% endblock %}
+{% block title %}Bienvenido Administrador!
+{% endblock %}
 
 {% block content %}
-  
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Funcionalidad 1: Registro de Llegada y Salida de Trabajadores</h5>
+						<p class="card-text">
+							El aplicativo web permite a un administrador registrar la llegada y salida de trabajadores utilizando su número de cédula.
+						</p>
+						<ul class="card-text">
+							<li>Al ingresar la cédula del trabajador o escanear su código de barras, el sistema utiliza la huella biométrica para verificar la identidad y registra automáticamente la fecha y hora exacta de llegada en una tabla específica de la base de datos.</li>
+							<li>El estado del trabajador se establece como "Ingreso" al registrar la llegada.</li>
+							<li>Para registrar la salida, el administrador utiliza nuevamente la huella biométrica o el código de barras, y el sistema registra la fecha y hora exacta de salida, actualizando el estado del trabajador a "Salida".</li>
+							<li>El aplicativo web proporciona la funcionalidad de exportar registros en formato Excel, permitiendo al administrador generar informes detallados de las entradas y salidas de los trabajadores.</li>
+							<li>Se implementan medidas de seguridad robustas para proteger la integridad de los datos biométricos y de identificación personal, garantizando que solo los administradores autorizados puedan acceder y gestionar los registros.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Funcionalidad 2: Ventajas del Aplicativo Web</h5>
+						<ul class="card-text">
+							<li>
+								<strong>Automatización Eficiente:</strong>
+								El aplicativo web automatiza el registro de llegada y salida de trabajadores utilizando tecnología biométrica y código de barras, mejorando la precisión y eficiencia del proceso.</li>
+							<li>
+								<strong>Acceso Rápido a la Información:</strong>
+								Proporciona una interfaz intuitiva que permite a los administradores buscar y consultar rápidamente los registros de actividad de los trabajadores en la clínica.</li>
+							<li>
+								<strong>Generación de Informes Detallados:</strong>
+								Permite generar informes detallados en formato Excel, facilitando la gestión y análisis de datos para la toma de decisiones informadas.</li>
+							<li>
+								<strong>Seguridad Avanzada:</strong>
+								Implementa medidas robustas de seguridad para proteger la información biométrica y personal de los trabajadores, garantizando la confidencialidad y cumplimiento normativo.</li>
+							<li>
+								<strong>Facilidad de Integración:</strong>
+								Diseñado con flexibilidad para integrarse con otros sistemas de gestión existentes en la clínica, mejorando la interoperabilidad y optimizando los procesos internos.</li>
+							<li>
+								<strong>Mejora en la Productividad:</strong>
+								Reduce el tiempo dedicado a la administración manual de registros y permite a los administradores enfocarse en tareas estratégicas y de valor agregado.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

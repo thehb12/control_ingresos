@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\error;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,12 +14,12 @@ class ErrorController extends AbstractController
     public function show(\Throwable $exception): Response
     {
          if ($exception instanceof NotFoundHttpException){        
-             return $this->render('error/index.html.twig', [
+             return $this->render('error/error.html.twig', [
                  'message' => $exception,
              ]);
          }
          
-        return $this->render('error/index.html.twig', [
+        return $this->render('error.html.twig', [
             'message' => ['statuscode'=> 500, 'message'=> 'NO Error!'],
         ]);
     }

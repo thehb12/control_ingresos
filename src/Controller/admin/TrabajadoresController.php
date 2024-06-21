@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
-use App\Services\TrabajadoresService;
+use App\Services\admin\TrabajadoresService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +15,10 @@ class TrabajadoresController extends AbstractController
     #[Route('index', name: 'index')]
     public function index(): Response
     {
-        return $this->render('trabajadores/index.html.twig', [
-            'controller_name' => 'TrabajadoresController',
-        ]);
+        if ($this->getUser() === null) {
+            return $this->redirectToRoute('app_login');
+        }
+        return $this->render('admin/trabajadores.html.twig', );
     }
 
     #[Route('pagination', name: 'pagination')]

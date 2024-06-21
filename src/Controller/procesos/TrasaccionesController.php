@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\procesos;
 
+use App\Services\procesos\TrasaccionesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Services\TrasaccionesService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,10 @@ class TrasaccionesController extends AbstractController
     #[Route('index', name: 'index')]
     public function index(): Response
     {
-        return $this->render('trasacciones/index.html.twig');
+        if ($this->getUser() === null) {
+            return $this->redirectToRoute('app_login');
+        }
+        return $this->render('procesos/trasacciones.html.twig');
     }
     #[Route('pagination', name: 'pagination')]
     public function pagination(
