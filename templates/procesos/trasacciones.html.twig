@@ -15,17 +15,17 @@
 				<input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" required>
 			</div>
 			<div class="col-md-12 mt-3 mb-4 d-flex justify-content-center">
-			<button type="submit" id="btn_guardar_form" class="btn btn-outline-primary btn-sm mx-3">
-				Registrar
-			</button>
-		</div>
+				<button type="submit" id="btn_guardar_form" class="btn btn-outline-primary btn-sm mx-3">
+					Registrar
+				</button>
+			</div>
 		</form>
 		<div>
-			<table id="table_trasacciones" style="width: auto"></table>
+			<table id="table_trasacciones" style="width: auto; margin-left: auto; margin-right: auto;"></table>
 		</div>
 	{% endblock %}
 	{% block javascripts %}
 		{{ parent() }}
 		{{ encore_entry_script_tags('trasacciones') }}
-	
+
 	{% endblock %}
