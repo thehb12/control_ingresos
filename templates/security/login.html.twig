@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!
+{% block title %}Iniciar sesión!
 {% endblock %}
 
 {% block body %}
@@ -12,17 +12,18 @@
 			max-width: 400px;
 			margin: 100px auto 0; /* Ajuste de margen para centrarlo verticalmente y agregar espacio en la parte superior */
 			padding: 20px;
-			 background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)); /* Degradado de blanco semi-transparente a más transparente */
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Borde semi-transparente */ 
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)); /* Degradado de blanco semi-transparente a más transparente */
+			border-radius: 10px;
+			border: 1px solid rgba(255, 255, 255, 0.5); /* Borde semi-transparente */
 		}
-		body{
+
+		body {
 			background-image: url('/images/fondo_control_acceso.jpg');
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat; /* Evita que la imagen se repita */
-            height: 109vh; /* Asegura que el fondo cubra toda la ventana */
-            margin: 0; /* Elimina el margen predeterminado */
+			height: 109vh; /* Asegura que el fondo cubra toda la ventana */
+			margin: 0; /* Elimina el margen predeterminado */
 		}
 
 		.h3 {
@@ -32,25 +33,24 @@
 
 		/* Estilo para los campos de entrada y etiquetas */
 		label {
-			display: flex; /* Usar flexbox para colocar los elementos en línea */
-			align-items: center; /* Alinear verticalmente los elementos */
-			margin-bottom: 12px; /* Ajuste del margen inferior */
+			display: block; /* Hacer que las etiquetas ocupen toda la línea */
+			margin-bottom: 8px; /* Ajuste del margen inferior */
 			font-weight: bold;
-			margin-right: 70%
 		}
 
 		input[type="text"],
 		input[type="password"] {
-			width: calc(100% - 30px); /* Ajuste del ancho para que la etiqueta y el campo de entrada no se superpongan */
+			display: block; /* Hacer que los inputs sean elementos de bloque */
+			margin: 0 auto 15px; /* Centrar los inputs horizontalmente y agregar margen inferior */
+			width: 95%; /* Ajustar el ancho al 80% del contenedor */
 			padding: 7px;
-			margin-bottom: 15px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
 			box-sizing: border-box; /* Para incluir el padding y el borde en el ancho total */
 		}
 
 		input[type="checkbox"] {
-			margin-left: auto; /* Mover el checkbox al lado derecho */
+			margin-right: 10px; /* Ajuste del margen derecho */
 		}
 
 		/* Estilo para el botón de enviar */
@@ -93,7 +93,8 @@
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal">Bienvenido Administrador</h1>
+		<h1 class="h3 mb-3 font-weight-normal">Control de Ingresos
+		</h1>
 		<label for="inputUsername">Usuario</label>
 		<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
 		<label for="inputPassword">Contraseña</label>
