@@ -72,21 +72,20 @@
 			margin-top: 5px;
 		}
 	</style>
-	{{ form_start(registrationForm) }}
-	<div class="form-container">
-		<h1>Registrar</h1>
-		{{ form_errors(registrationForm) }}
-		{{ form_row(registrationForm.username, {
-        label: 'Usuario'
-    }) }}
-		{{ form_row(registrationForm.plainPassword, {
-        label: 'Contraseña'
-    }) }}
-		{{ form_row(registrationForm.agreeTerms, {
-        label: 'Acepto los términos y condiciones'
-    }) }}
-		<button type="submit" class="btn">Registrar</button>
-	</div>
-	{{ form_end(registrationForm) }}
+
+	<form method="post">
+		<h1 class="h3 mb-3 font-weight-normal">Registrarse
+		</h1>
+		<label for="inputUsername">Usuario</label>
+		<input type="text" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+		<label for="inputPassword">Contraseña</label>
+		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+		<label for="inputcodigo">Ingresa el Codigo</label>
+		<input type="password" name="codigo" id="inputcodigo" class="form-control" autocomplete="codigo" required>
+
+		<button class="btn btn-lg btn-primary" type="submit">
+			Registrar
+		</button>
+	</form>
 
 {% endblock %}

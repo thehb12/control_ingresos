@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Codigo;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\CodigoRepository;
+use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,31 +19,39 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, CodigoRepository $codigorepository, Security $security, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        if ($request->isMethod('POST')) {
+            $username = $request->getPayload()->getString('username');
+            $password = $request->getPayload()->getString('password');
+            $codigo = $request->getPayload()->getString('codigo');
+            if ($username == null || $password == null || $codigo == null) {
+                return $this->render('security/register.html.twig');
+            };
+            $codigo = $codigorepository->findOneBy(['codigo' => $codigo]);
+            if (!$codigo instanceof Codigo){
+                return $this->render('security/register.html.twig');  
+            };
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+
+
+            $user = $userRepository->findOneBy(['username' => $username]);
+            if ($user instanceof User) {
+                return $this->render('security/register.html.twig');
+            }
+            $user = new User();
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $password
                 )
             );
+            $user->setUsername($username);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // do anything else you need here, like send an email
-
+            $userRepository->Save($user);
             return $security->login($user, UserAuthenticator::class, 'main');
-        }
+        };
 
-        return $this->render('security/register.html.twig', [
-            'registrationForm' => $form,
-        ]);
+        return $this->render('security/register.html.twig');
     }
 }
