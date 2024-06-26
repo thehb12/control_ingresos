@@ -78,6 +78,22 @@
 		a[href="#"]:hover {
 			text-decoration: underline;
 		}
+		.register-button {
+			background-color: #007bff; /* Verde */
+			color: white;
+			padding: 7px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 12px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 8px;
+		}
+
+		.register-button:hover {
+			background-color: #0056b3;
+		}
 	</style>
 
 	<form method="post">
@@ -108,6 +124,7 @@
 				Recuerdame
 			</label>
 		</div>
+		<button class="register-button" onclick="window.location.href='{{ path('app_register') }}'">Registrarse</button>
 
 		<button class="btn btn-lg btn-primary" type="submit">
 			Iniciar sesión

@@ -71,21 +71,42 @@
 			color: green;
 			margin-top: 5px;
 		}
+		.register-button {
+			background-color: #007bff; /* Azul */
+			border: none;
+			color: white;
+			padding: 5px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 200px 400px;
+			cursor: pointer;
+			border-radius: 8px;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+
+		.register-button:hover {
+			background-color: #0056b3;
+		}
 	</style>
 
-	<form method="post">
-		<h1 class="h3 mb-3 font-weight-normal">Registrarse
-		</h1>
+	<form id="registrationForm" method="post">
+		<h1 class="h3 mb-3 font-weight-normal">Registrarse</h1>
 		<label for="inputUsername">Usuario</label>
-		<input type="text" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+		<input type="text" name="username" id="inputUsername" class="form-control" autocomplete="username">
 		<label for="inputPassword">Contraseña</label>
-		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-		<label for="inputcodigo">Ingresa el Codigo</label>
-		<input type="password" name="codigo" id="inputcodigo" class="form-control" autocomplete="codigo" required>
+		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password">
+		<label for="inputcodigo">Ingresa el Código</label>
+		<input type="password" name="codigo" id="inputcodigo" class="form-control" autocomplete="codigo">
 
-		<button class="btn btn-lg btn-primary" type="submit">
-			Registrar
-		</button>
+		<button class="btn btn-lg btn-primary" type="submit">Registrar</button>
 	</form>
-
+	<button class="register-button" onclick="window.location.href='{{ path('app_login') }}'">Regresar</button>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('codigo') }}
 {% endblock %}

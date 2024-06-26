@@ -11,6 +11,7 @@ Encore
     .addEntry('bootstrap', './assets/bootstrap.js')
     .addEntry('trabajadores', './assets/trabajadores.js')
     .addEntry('trasacciones', './assets/trasacciones.js')
+    .addEntry('codigo', './assets/codigo.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
